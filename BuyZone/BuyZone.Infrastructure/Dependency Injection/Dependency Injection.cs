@@ -1,4 +1,6 @@
 using BuyZone.Domain;
+using BuyZone.Domain.BaseUser;
+using BuyZone.Domain.Entities.Security;
 using BuyZone.Infrastructure.DbContest;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,9 +16,7 @@ public static class Dependency_Injection
     {
         services.AddDbContext<BuyZoneDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
-        
-        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
+        services.AddScoped(typeof(IRepository), typeof(Repository));
         return services;
     }
 }

@@ -1,61 +1,43 @@
 using BuyZone.Domain;
+using BuyZone.Domain.BaseEntity;
+using BuyZone.Infrastructure.DbContest;
 using Microsoft.EntityFrameworkCore;
 
 namespace BuyZone.Infrastructure;
 
-public class Repository<T> :IRepository<T> where T : class
+public class Repository:IRepository
 {
-    private readonly DbContext _context;
-    private readonly DbSet<T> _dbSet;
+    private readonly BuyZoneDbContext _context;
 
-    public Repository(DbContext context)
+    public Repository(BuyZoneDbContext context)
     {
         _context = context;
-        _dbSet = context.Set<T>();
     }
 
-    public async Task<T?> GetByIdAsync(Guid id)
-    {
-        return await _dbSet.FindAsync(id);
-    }
-
-    public Task CreateAsync(T entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task UpdateAsync(T entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task DeleteAsync(T entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<List<T>> GetAllAsync()
-    {
-        return await _dbSet.ToListAsync();
-    }
-
-    public async Task AddAsync(T entity)
-    {
-        await _dbSet.AddAsync(entity);
-    }
-
-    public void Update(T entity)
-    {
-        _dbSet.Update(entity);
-    }
-
-    public void Delete(T entity)
-    {
-        _dbSet.Remove(entity);
-    }
+ 
 
     public async Task<bool> SaveChangesAsync()
     {
         return await _context.SaveChangesAsync() > 0;
+    }
+
+    public Task<T?> GetByIdAsync<T>(Guid id) where T :class, IBaseEntity
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> SaveChangesAsync<T>() where T : class,IBaseEntity
+    {
+        throw new NotImplementedException();
+    }
+
+    public IQueryable<T> Query<T>() where T :class, IBaseEntity
+    {
+        return _context.Set<T>().AsNoTracking();
+    }
+
+    public IQueryable<T> TrackingQuery<T>() where T :class, IBaseEntity
+    {
+        return _context.Set<T>().AsTracking();
     }
 }

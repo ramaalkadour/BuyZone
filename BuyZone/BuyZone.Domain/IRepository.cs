@@ -1,12 +1,12 @@
+using BuyZone.Domain.BaseEntity;
+
 namespace BuyZone.Domain;
 
-public interface IRepository<T> where T : class
+public interface IRepository
 {
-    Task<T?> GetByIdAsync(Guid id);
-    Task CreateAsync(T entity);
-    Task UpdateAsync(T entity);
-    Task DeleteAsync(T entity);
-    Task <List<T>> GetAllAsync();
-    Task<bool> SaveChangesAsync();
-    
+    Task<T?> GetByIdAsync<T>(Guid id) where T:class,IBaseEntity;
+    Task<bool> SaveChangesAsync<T>()where T:class,IBaseEntity;
+    IQueryable<T> Query<T>() where T:class ,IBaseEntity ;
+    IQueryable<T> TrackingQuery<T>()where T:class,IBaseEntity;
+
 }

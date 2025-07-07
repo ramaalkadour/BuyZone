@@ -1,5 +1,8 @@
+using BuyZone.Domain.BaseUser;
+using BuyZone.Domain.Entities.Security;
 using BuyZone.Infrastructure.DbContest;
 using BuyZone.Infrastructure.Dependency_Injection;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructure(builder.Configuration);
-
+builder.Services.AddIdentity<User, Role>()
+    .AddEntityFrameworkStores<BuyZoneDbContext>();
+builder.Services.AddControllers();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -46,4 +51,8 @@ app.Run();
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+}
+
+public class StartUp
+{
 }
