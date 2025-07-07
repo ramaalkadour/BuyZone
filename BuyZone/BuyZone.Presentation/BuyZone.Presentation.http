@@ -1,0 +1,6 @@
+@BuyZone.Presentation_HostAddress = http://localhost:5262
+
+GET {{BuyZone.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
