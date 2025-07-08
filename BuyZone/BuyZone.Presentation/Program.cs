@@ -1,3 +1,4 @@
+using BuyZone.Application;
 using BuyZone.Domain.BaseUser;
 using BuyZone.Domain.Entities.Security;
 using BuyZone.Infrastructure.DbContest;
@@ -20,7 +21,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<BuyZoneDbContext>();
 builder.Services.AddControllers();
-builder.Services.AddMediatR(o => o.RegisterServicesFromAssemblies(typeof(Program).Assembly));
+builder.Services.AddMediatR(o => o.RegisterServicesFromAssemblies(typeof(Class1).Assembly));
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

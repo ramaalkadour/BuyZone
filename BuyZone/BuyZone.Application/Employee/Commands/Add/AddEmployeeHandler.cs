@@ -25,7 +25,7 @@ public class AddEmployeeHandler:IRequestHandler<AddEmployeeCommand.Request,GetAl
         var employee = new DefaultNamespace.Employee(request.FirstName,request.LastName,request.Email,request.PhoneNumber);
         var result=await _userManager.CreateAsync(employee, request.Password);
         if (!result.Succeeded)
-            throw new Exception("add employee falied");
+            throw new Exception("failer");
         var role = await _roleManager.FindByIdAsync(request.RoleId.ToString());
         if (role is not null)
             await _userManager.AddToRoleAsync(employee, role.Name??"");
