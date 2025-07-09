@@ -9,9 +9,12 @@ namespace BuyZone.Infrastructure.DbContest;
 
 public class BuyZoneDbContext:IdentityDbContext<User,Role,Guid>
 {
-    public BuyZoneDbContext(DbContextOptions<BuyZoneDbContext> options) : base(options) { }
-    public DbSet<Employee> Employees ;
-    public DbSet<Category> Categories;
+    public BuyZoneDbContext(DbContextOptions<BuyZoneDbContext> options) : base(options)
+    {
+        
+    }
+    public DbSet<Employee> Employees { get; set; }
+    public DbSet<Category> Categories { get; set; }
     
 
 }
