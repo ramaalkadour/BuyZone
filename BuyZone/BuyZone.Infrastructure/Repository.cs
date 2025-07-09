@@ -41,7 +41,7 @@ public class Repository:IRepository
         return _context.Set<T>().AsTracking();
     }
 
-    public async Task AddAsync<T>(T entity) where T : class, IBaseEntity
+    public async Task AddAsync<T>(T entity, CancellationToken cancellationToken) where T : class, IBaseEntity
     {
         await _context.Set<T>().AddAsync(entity);
     }
