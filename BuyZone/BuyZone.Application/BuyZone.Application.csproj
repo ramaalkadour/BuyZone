@@ -22,7 +22,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Category\Commands\" />
       <Folder Include="Product\Commands\" />
       <Folder Include="Product\Queries\" />
       <Folder Include="Role\Commands\Delete\" />

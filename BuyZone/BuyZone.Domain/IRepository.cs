@@ -8,5 +8,6 @@ public interface IRepository
     Task<bool> SaveChangesAsync<T>()where T:class,IBaseEntity;
     IQueryable<T> Query<T>() where T:class ,IBaseEntity ;
     IQueryable<T> TrackingQuery<T>()where T:class,IBaseEntity;
+    Task AddAsync<T>(T entity) where T : class, IBaseEntity;
 
 }

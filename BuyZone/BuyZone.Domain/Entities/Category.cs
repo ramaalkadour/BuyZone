@@ -10,9 +10,8 @@ public class Category:IBaseEntity
     private readonly List<Product> _products = new List<Product>();
     public IReadOnlyCollection<Product> Products => _products.AsReadOnly();
 
-    public Category(Guid id, string name, string description)
-    {
-        Id = id;
+    public Category(string name, string description)
+    { 
         Name = name;
         Description = description;
     }
