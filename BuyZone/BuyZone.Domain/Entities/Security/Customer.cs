@@ -8,6 +8,8 @@ public class Customer:User,IBaseEntity
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Address { get; set; }
+    public ICollection<Order> Orders { get; set; } = new List<Order>();
+
 
     public Customer(string firstName, string lastName,string email,string phoneNumber, string address)
     {
