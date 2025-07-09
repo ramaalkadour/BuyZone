@@ -15,6 +15,7 @@ public class BuyZoneDbContext:IdentityDbContext<User,Role,Guid>
     }
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<Order> Orders { get; set; }
     
 
 }

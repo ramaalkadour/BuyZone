@@ -11,6 +11,8 @@ public class Product:IBaseEntity
     public double Price { get; set; }
     public Guid CategoryId { get; set; }
     public Category Category { get; set; }
+    private readonly List<Product> _products = new();
+    public IReadOnlyCollection<Product> Products => _products.AsReadOnly();
 
     public Product(Guid id, string name, string imageUrl, string description, double price, Guid categoryId)
     {
