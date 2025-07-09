@@ -7,7 +7,7 @@ namespace BuyZone.Application.Category.Commands.Update;
 
 public class UpdateCategoryCommand
 {
-    public class Request:IRequest<GetAllCategoriesQuery.Response>
+    public class Request:IRequest<GetAllCategoriesQuery.Response.CategoryDto>
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
