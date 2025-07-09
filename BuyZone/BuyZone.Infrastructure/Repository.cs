@@ -45,4 +45,9 @@ public class Repository:IRepository
     {
         await _context.Set<T>().AddAsync(entity);
     }
+
+    public void Update<T>(T entity) where T : class, IBaseEntity
+    {
+         _context.Set<T>().Update(entity);
+    }
 }

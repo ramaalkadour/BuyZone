@@ -30,8 +30,6 @@ public class GetAllEmployeesQuery
                 FirstName = e.FirstName,
                 LastName = e.LastName,
                 Email = e.Email??"",
-                RoleId = e.UserRoles.FirstOrDefault()!.RoleId,
-                Role = e.UserRoles.FirstOrDefault()!.Role.Name??""
             };
         }
     }

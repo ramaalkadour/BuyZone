@@ -9,5 +9,6 @@ public interface IRepository
     IQueryable<T> Query<T>() where T:class ,IBaseEntity ;
     IQueryable<T> TrackingQuery<T>()where T:class,IBaseEntity;
     Task AddAsync<T>(T entity) where T : class, IBaseEntity;
+    void Update<T>(T entity) where T : class, IBaseEntity;
 
 }
