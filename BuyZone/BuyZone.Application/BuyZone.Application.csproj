@@ -21,4 +21,11 @@
       <ProjectReference Include="..\BuyZone.Domain\BuyZone.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Role\Commands\Delete\" />
+      <Folder Include="Role\Commands\Update\" />
+      <Folder Include="Role\Queries\GetAll\" />
+      <Folder Include="Role\Queries\GetById\" />
+    </ItemGroup>
+
 </Project>

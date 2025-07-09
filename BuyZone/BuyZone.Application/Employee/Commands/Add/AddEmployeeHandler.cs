@@ -11,9 +11,9 @@ namespace BuyZone.Application.Employee.Commands.Add;
 public class AddEmployeeHandler:IRequestHandler<AddEmployeeCommand.Request,GetAllEmployeesQuery.Response.EmployeeRes>
 {
     private readonly UserManager<User> _userManager;
-    private readonly RoleManager<Role> _roleManager;
+    private readonly RoleManager<Domain.Entities.Security.Role> _roleManager;
     private readonly IRepository _repository;
-    public AddEmployeeHandler(UserManager<User> userManager, RoleManager<Role> roleManager, IRepository repository)
+    public AddEmployeeHandler(UserManager<User> userManager, RoleManager<Domain.Entities.Security.Role> roleManager, IRepository repository)
     {
         _userManager = userManager;
         _roleManager = roleManager;
