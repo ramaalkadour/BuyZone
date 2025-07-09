@@ -1,7 +1,7 @@
 using BuyZone.Application.Category.Queries.GetAll;
 using MediatR;
 
-namespace BuyZone.Application.Category.Commands;
+namespace BuyZone.Application.Category.Commands.Add;
 
 public class AddCategoryCommand
 {

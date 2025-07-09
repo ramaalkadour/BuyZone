@@ -1,3 +1,5 @@
+using BuyZone.Application.Category.Commands;
+using BuyZone.Application.Category.Commands.Add;
 using BuyZone.Application.Category.Queries.GetAll;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +18,12 @@ public class CategoryController : Controller
    }
    [HttpGet("GetAll")]
    public async Task<IActionResult> GetAll(GetAllCategoriesQuery.Request request)
+   {
+      return Ok(await _mediator.Send(request));
+   }
+
+   [HttpPost("Add")]
+   public async Task<IActionResult> Add(AddCategoryCommand.Request request)
    {
       return Ok(await _mediator.Send(request));
    }

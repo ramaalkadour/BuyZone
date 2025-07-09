@@ -22,6 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Category\Queries\GetById\" />
       <Folder Include="Product\Commands\" />
       <Folder Include="Product\Queries\" />
       <Folder Include="Role\Commands\Delete\" />

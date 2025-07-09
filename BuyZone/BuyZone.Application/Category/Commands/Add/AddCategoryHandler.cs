@@ -1,10 +1,9 @@
-using System.Resources;
 using BuyZone.Application.Category.Queries.GetAll;
 using BuyZone.Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace BuyZone.Application.Category.Commands;
+namespace BuyZone.Application.Category.Commands.Add;
 
 public class AddCategoryHandler:IRequestHandler<AddCategoryCommand.Request,GetAllCategoriesQuery.Response.CategoryDto>
 {
