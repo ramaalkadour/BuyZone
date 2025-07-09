@@ -13,5 +13,6 @@ public class Employee:User
         LastName = lastName;
         Email = email;
         PhoneNumber = phoneNumber;
+        UserName = email;
     }
 }
