@@ -12,7 +12,7 @@ public class Product:IBaseEntity
     public Guid CategoryId { get; set; }
     public Category Category { get; set; }
 
-    public Product(Guid id, string name, string imageUrl, string description, double price, Guid categoryId, Category category)
+    public Product(Guid id, string name, string imageUrl, string description, double price, Guid categoryId)
     {
         Id = id;
         Name = name;
@@ -20,6 +20,5 @@ public class Product:IBaseEntity
         Description = description;
         Price = price;
         CategoryId = categoryId;
-        Category = category;
     }
 }
