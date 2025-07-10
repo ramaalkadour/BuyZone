@@ -1,20 +1,40 @@
 using BuyZone.Application.Order.Queries.GetAll;
-using BuyZone.Domain.BaseUser;
+using BuyZone.Domain;
+using BuyZone.Domain.Entities;
+
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 
 namespace BuyZone.Application.Order.Commands.Add;
 
-public class AddOrderHandler:IRequestHandler<AddOrderCommand.Request, GetAllOrdersQuery.Response.OrdersRes>
+public class AddOrderHandler : IRequestHandler<AddOrderCommand.Request, GetAllOrdersQuery.Response.OrdersRes>
 {
-    private readonly UserManager<User> _userManager;
+    private readonly IRepository _orderRepository;
 
-    public AddOrderHandler(UserManager<User> userManager)
+    public AddOrderHandler(IRepository orderRepository)
     {
-        _userManager = userManager;
+        _orderRepository = orderRepository;
     }
-    public Task<GetAllOrdersQuery.Response.OrdersRes> Handle(AddOrderCommand.Request request, CancellationToken cancellationToken)
+
+    public async Task<GetAllOrdersQuery.Response.OrdersRes> Handle(AddOrderCommand.Request request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var order = new Domain.Entities.Order(
+            id: Guid.NewGuid(),                 
+            customerId: request.CustomerId,
+            productId: request.ProductId,
+            price: request.Price,
+            productName: request.ProductName
+        );
+
+        await _orderRepository.AddAsync(order, cancellationToken);
+        await _orderRepository.SaveChangesAsync();
+
+        return new GetAllOrdersQuery.Response.OrdersRes
+        {
+            Id = order.Id,
+            CustomerId = order.CustomerId,
+            ProductId = order.ProductId,
+            ProductName = order.ProductName,
+            Price = order.Price
+        };
     }
 }
