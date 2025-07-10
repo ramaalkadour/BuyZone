@@ -1,12 +1,13 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using BuyZone.Domain;
 using BuyZone.Domain.BaseUser;
 using BuyZone.Infrastructure.Auth;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-public class JwtService
+public class JwtService: IJwtService
 {
     private readonly JwtSettings _jwtSettings;
 
