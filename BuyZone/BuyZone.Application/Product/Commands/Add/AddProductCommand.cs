@@ -1,5 +1,6 @@
 using MediatR;
 using System;
+using Microsoft.AspNetCore.Http;
 
 namespace BuyZone.Application.Product.Commands.AddOrUpdate
 {
@@ -13,6 +14,7 @@ namespace BuyZone.Application.Product.Commands.AddOrUpdate
             public string ImageUrl { get; set; }
             public double Price { get; set; }
             public Guid CategoryId { get; set; }
+            public IFormFile Image { get; set; }
         }
 
         public class Response
