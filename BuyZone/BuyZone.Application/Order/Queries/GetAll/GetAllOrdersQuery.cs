@@ -22,6 +22,7 @@ public class GetAllOrdersQuery
             public Guid ProductId { get; set; }
             public string ProductName { get; set; }
             public double Price { get; set; }
+            public int Number { get; set; }
 
             public static Expression<Func<Domain.Entities.Order, OrdersRes>> Selector() => order => new OrdersRes
             {

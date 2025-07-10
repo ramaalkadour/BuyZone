@@ -18,18 +18,22 @@ public class GetAllEmployeesQuery
         public class EmployeeRes
         {
             public Guid Id { get; set; }
+            public int Number { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string Email { get; set; }
-            public Guid RoleId { get; set; }
-            public string Role { get; set; }
+            public string PhoneNumber { get; set; }
+            public string Status { get; set; }
 
             public static Expression<Func<DefaultNamespace.Employee, EmployeeRes>> Selector() => e => new()
             {
                 Id = e.Id,
+                Number = e.Number,
                 FirstName = e.FirstName,
                 LastName = e.LastName,
                 Email = e.Email??"",
+                PhoneNumber = e.PhoneNumber,
+                Status = "Active",
             };
         }
     }

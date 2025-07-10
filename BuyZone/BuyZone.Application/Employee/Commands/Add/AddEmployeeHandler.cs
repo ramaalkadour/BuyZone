@@ -22,7 +22,7 @@ public class AddEmployeeHandler:IRequestHandler<AddEmployeeCommand.Request,GetAl
 
     public async Task<GetAllEmployeesQuery.Response.EmployeeRes> Handle(AddEmployeeCommand.Request request, CancellationToken cancellationToken)
     {
-        var employee = new DefaultNamespace.Employee(request.FirstName,request.LastName,request.Email,request.PhoneNumber);
+        var employee = new DefaultNamespace.Employee(request.FirstName,request.LastName,request.Email,request.PhoneNumber,request.Status);
         var result=await _userManager.CreateAsync(employee, request.Password);
         if (!result.Succeeded)
             throw new Exception("failer");

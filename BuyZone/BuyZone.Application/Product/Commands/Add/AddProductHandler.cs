@@ -27,7 +27,7 @@ public class AddProductHandler : IRequestHandler<AddOrUpdateProductCommand.Reque
             CategoryId = request.CategoryId
         };
 
-        await _repository.AddAsync(product, cancellationToken);
+        await _repository.AddAsync(product);
         await _repository.SaveChangesAsync();
 
         

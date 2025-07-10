@@ -9,6 +9,17 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        policy => policy
+            .WithOrigins("http://localhost:3000") // نفس ال Origin اللي جاي منو الطلب
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
+});
+
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.CustomSchemaIds(type =>
@@ -30,8 +41,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.MapControllers();
+app.UseCors("AllowReactApp");
 app.Run();
 public class StartUp
 {

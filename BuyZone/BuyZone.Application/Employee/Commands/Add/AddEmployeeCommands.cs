@@ -1,4 +1,5 @@
 using BuyZone.Application.Employee.Queries.GetAll;
+using BuyZone.Domain;
 using MediatR;
 
 namespace BuyZone.Application.Employee.Commands.Add;
@@ -12,6 +13,7 @@ public class AddEmployeeCommand
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
+        public EmployeeStatus Status { get; set; }
         public Guid RoleId { get; set; }
     }
 }

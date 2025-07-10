@@ -25,7 +25,7 @@ public class AddOrderHandler : IRequestHandler<AddOrderCommand.Request, GetAllOr
             productName: request.ProductName
         );
 
-        await _orderRepository.AddAsync(order, cancellationToken);
+        await _orderRepository.AddAsync(order);
         await _orderRepository.SaveChangesAsync();
 
         return new GetAllOrdersQuery.Response.OrdersRes

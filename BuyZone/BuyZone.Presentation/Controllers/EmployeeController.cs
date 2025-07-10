@@ -17,7 +17,7 @@ namespace BuyZone.Presentation.Controllers
         }
         
         [HttpGet("GetAll",Name = "GetAll")]
-        public async Task<IActionResult> GetAll(GetAllEmployeesQuery.Request request)
+        public async Task<IActionResult> GetAll([FromQuery]GetAllEmployeesQuery.Request request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);

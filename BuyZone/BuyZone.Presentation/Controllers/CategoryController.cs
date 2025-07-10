@@ -17,7 +17,7 @@ public class CategoryController : Controller
       _mediator = mediator;
    }
    [HttpGet("GetAll")]
-   public async Task<IActionResult> GetAll(GetAllCategoriesQuery.Request request)
+   public async Task<IActionResult> GetAll([FromQuery]GetAllCategoriesQuery.Request request)
    {
       return Ok(await _mediator.Send(request));
    }
