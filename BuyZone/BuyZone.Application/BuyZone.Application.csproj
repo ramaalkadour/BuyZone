@@ -23,7 +23,6 @@
 
     <ItemGroup>
       <Folder Include="Category\Queries\GetById\" />
-      <Folder Include="Order\Commands\Update\" />
       <Folder Include="Role\Commands\Delete\" />
       <Folder Include="Role\Commands\Update\" />
       <Folder Include="Role\Queries\GetAll\" />
