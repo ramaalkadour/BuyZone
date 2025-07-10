@@ -19,6 +19,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\BuyZone.Domain\BuyZone.Domain.csproj" />
+      <ProjectReference Include="..\BuyZone.Infrastructure\BuyZone.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
