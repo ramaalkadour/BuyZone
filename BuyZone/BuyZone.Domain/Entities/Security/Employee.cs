@@ -1,9 +1,10 @@
 using BuyZone.Domain;
+using BuyZone.Domain.BaseEntity;
 using BuyZone.Domain.BaseUser;
 
 namespace DefaultNamespace;
 
-public class Employee:User
+public class Employee:User,IBaseEntity
 {
     public int Number { get; set; }
     public string FirstName { get; set; }
