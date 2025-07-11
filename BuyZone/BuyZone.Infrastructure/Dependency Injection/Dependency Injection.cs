@@ -1,3 +1,4 @@
+using BuyZone.Application.Interfaces;
 using BuyZone.Domain;
 using BuyZone.Domain.BaseUser;
 using BuyZone.Domain.Entities.Security;
@@ -17,6 +18,7 @@ public static class Dependency_Injection
         services.AddDbContext<BuyZoneDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
         services.AddScoped(typeof(IRepository), typeof(Repository));
+        services.AddScoped(typeof(IFileService), typeof(FileService));
         return services;
     }
 }

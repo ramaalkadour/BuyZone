@@ -3,7 +3,7 @@ using BuyZone.Domain.BaseUser;
 
 namespace BuyZone.Domain.Entities.Security;
 
-public class Customer:User,IBaseEntity
+public class Customer:User
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }

@@ -33,7 +33,6 @@ public class UpdateOrderHandler : IRequestHandler<UpdateOrderCommand.Request, Up
         order.CustomerId = request.CustomerId;
         order.ProductId = request.ProductId;
         order.Price = request.Price;
-        order.ProductName = request.ProductName;
 
         await _repository.SaveChangesAsync();
 

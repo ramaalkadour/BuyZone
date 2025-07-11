@@ -18,11 +18,9 @@ public class AddOrderHandler : IRequestHandler<AddOrderCommand.Request, GetAllOr
     public async Task<GetAllOrdersQuery.Response.OrdersRes> Handle(AddOrderCommand.Request request, CancellationToken cancellationToken)
     {
         var order = new Domain.Entities.Order(
-            id: Guid.NewGuid(),                 
             customerId: request.CustomerId,
             productId: request.ProductId,
-            price: request.Price,
-            productName: request.ProductName
+            price: request.Price
         );
 
         await _orderRepository.AddAsync(order);
@@ -33,7 +31,6 @@ public class AddOrderHandler : IRequestHandler<AddOrderCommand.Request, GetAllOr
             Id = order.Id,
             CustomerId = order.CustomerId,
             ProductId = order.ProductId,
-            ProductName = order.ProductName,
             Price = order.Price
         };
     }

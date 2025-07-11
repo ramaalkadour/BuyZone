@@ -4,7 +4,7 @@ using BuyZone.Domain.BaseUser;
 
 namespace DefaultNamespace;
 
-public class Employee:User,IBaseEntity
+public class Employee:User
 {
     public int Number { get; set; }
     public string FirstName { get; set; }
