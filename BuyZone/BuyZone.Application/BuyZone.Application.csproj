@@ -24,6 +24,7 @@
 
     <ItemGroup>
       <Folder Include="Category\Queries\GetById\" />
+      <Folder Include="Report\Command\" />
       <Folder Include="Role\Commands\Delete\" />
       <Folder Include="Role\Commands\Update\" />
       <Folder Include="Role\Queries\GetAll\" />
