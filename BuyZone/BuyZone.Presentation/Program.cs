@@ -12,6 +12,7 @@ using BuyZone.WAF.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,10 +22,11 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
         policy => policy
-            .WithOrigins("http://localhost:3000") // نفس ال Origin اللي جاي منو الطلب
+            .WithOrigins("http://localhost:3000")
+            .WithOrigins("https://localhost:7065")// نفس ال Origin اللي جاي منو الطلب
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .AllowCredentials());
+            .AllowCredentials());   
 });
 
 
@@ -72,6 +74,13 @@ builder.Services.AddMediatR(o => o.RegisterServicesFromAssemblies(typeof(Class1)
 builder.Services.AddMediatR(o => o.RegisterServicesFromAssemblies(typeof(AssemblyReference).Assembly));
 builder.Services.AddScoped(typeof(WafLogAttribute));
 builder.Services.AddScoped(typeof(SqlInjectionChecker));
+builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<RateLimiter>(provider =>
+{
+    var cache = provider.GetRequiredService<IMemoryCache>();
+    return new RateLimiter(cache, limit: 5, window: TimeSpan.FromSeconds(10));
+});
+builder.Services.AddSingleton<RequestReader>();
 
 
 var app = builder.Build();
@@ -81,6 +90,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseStaticFiles(); // تأكد من وجود هذا
 
 app.MapControllers();
 app.UseCors("AllowReactApp");

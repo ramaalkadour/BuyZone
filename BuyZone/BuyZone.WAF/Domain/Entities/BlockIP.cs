@@ -8,6 +8,7 @@ public class BlockIP:IBaseEntity
 {
     public Guid Id { get; set; }
 
+    public int Number { get; set; }
     public long NumberOfRequests { get; set; }
     public string IpAddress { get; set; }
 

@@ -16,6 +16,8 @@ public class GetByIdProductHandler : IRequestHandler<GetByIdProductQuery.Request
     public async Task<GetByIdProductQuery.Response> Handle(GetByIdProductQuery.Request request, CancellationToken cancellationToken)
     {
         var product = await _repository.Query<Domain.Entities.Product>()
+            .Include(e=>e.Orders)
+            .Include(e=>e.Category)
             .Where(p => p.Id == request.Id)
             .Select(GetByIdProductQuery.Response.Selector())
             .FirstOrDefaultAsync(cancellationToken);

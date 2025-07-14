@@ -20,6 +20,7 @@ public class GetAllCategoriesQuery
             public int Number { get; set; }
             public string Name { get; set; }
             public int NumberOfProducts { get; set; }
+            public string Description { get; set; }
 
             public static Expression<Func<Domain.Entities.Category, CategoryDto>> Selector() => c => new()
             {
@@ -27,6 +28,7 @@ public class GetAllCategoriesQuery
                 Number = 1,
                 Name = c.Name,
                 NumberOfProducts = 2,
+                Description = c.Description
             };
         }
     }

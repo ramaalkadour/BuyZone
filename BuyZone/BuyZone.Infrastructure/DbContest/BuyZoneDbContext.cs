@@ -12,12 +12,24 @@ public class BuyZoneDbContext:IdentityDbContext<User,Role,Guid>
 {
     public BuyZoneDbContext(DbContextOptions<BuyZoneDbContext> options) : base(options)
     {
-        
     }
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<BlockIP> BlackIPs { get; set; }
     public DbSet<Logs>Logs { get; set; }
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.Entity<Product>()
+            .Property(p => p.Number)
+            .UseIdentityColumn()
+            .ValueGeneratedOnAdd();
+        builder.Entity<BlockIP>()
+            .Property(p => p.Number)
+            .UseIdentityColumn()
+            .ValueGeneratedOnAdd();
+        base.OnModelCreating(builder);
+       
+    }
 
 }

@@ -1,75 +1,73 @@
-using System.Text;
 using BuyZone.Domain;
 using BuyZone.WAF.Domain.Entities;
 using BuyZone.WAF.Domain.Enums;
 using BuyZone.WAF.Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 public class WafLogAttribute : Attribute, IAsyncActionFilter
 {
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
-        var ip = context.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
-        var path = context.HttpContext.Request.Path;
+        var httpContext = context.HttpContext;
+        var services = httpContext.RequestServices;
 
-        var rateLimiter = context.HttpContext.RequestServices.GetRequiredService<RateLimiter>();
-        var _repository = context.HttpContext.RequestServices.GetRequiredService<IRepository>();
-        var checker = context.HttpContext.RequestServices.GetRequiredService<SqlInjectionChecker>();
-        var request = context.HttpContext.Request;
+        var ip = httpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+        var path = httpContext.Request.Path;
 
-        // Check rate limiting
+        var rateLimiter = services.GetRequiredService<RateLimiter>();
+        var repository = services.GetRequiredService<IRepository>();
+        var checker = services.GetRequiredService<SqlInjectionChecker>();
+        var requestReader = services.GetRequiredService<RequestReader>();
+        var blockIp=await repository.Query<BlockIP>()
+            .FirstOrDefaultAsync(i=>i.IpAddress == ip);
+        if(blockIp is not null&&blockIp.Status==IpStatus.Inactive)
+        {
+            httpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
+            await httpContext.Response.WriteAsync("Ip Address Is blocked");
+            return;
+        }
+        // 🛑 Rate limiting
         if (rateLimiter.IsLimited(ip, out var retryAfter))
         {
-            var blockedLog = new Logs(ip, request: $"Rate limit exceeded on {path}", path: path)
+            var blockedLog = new Logs(ip, $"Rate limit exceeded on {path}", path)
             {
                 Status = "Blocked",
                 TypeOfAttack = TypeOfAttack.RateLimiting
             };
-            await _repository.AddAsync(blockedLog);
-            await _repository.SaveChangesAsync();
 
-            context.HttpContext.Response.StatusCode = 429;
-            context.HttpContext.Response.Headers["Retry-After"] = retryAfter.TotalSeconds.ToString("F0");
-            await context.HttpContext.Response.WriteAsync("Too Many Requests");
+            await repository.AddAsync(blockedLog);
+            await repository.SaveChangesAsync();
+
+            httpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
+            httpContext.Response.Headers["Retry-After"] = retryAfter.TotalSeconds.ToString("F0");
+            await httpContext.Response.WriteAsync("Too Many Requests");
             return;
         }
 
-        // Build full input for logging & SQL injection check
-        var stringBuilder = new StringBuilder();
+        // 📥 Read full input
+        var fullInput = await requestReader.ReadUserInputsAsync(httpContext.Request);
 
-        if (request.Query.Any())
-        {
-            foreach (var q in request.Query)
-                stringBuilder.AppendLine($"{q.Key}={q.Value}");
-        }
-
-        foreach (var h in request.Headers)
-            stringBuilder.AppendLine($"{h.Key}:{h.Value}");
-
-        request.EnableBuffering();
-        if (request.ContentLength > 0 && request.Body.CanRead)
-        {
-            request.Body.Position = 0;
-            using var reader = new StreamReader(request.Body, Encoding.UTF8, detectEncodingFromByteOrderMarks: false, leaveOpen: true);
-            var body = await reader.ReadToEndAsync();
-            stringBuilder.AppendLine(body);
-            request.Body.Position = 0;
-        }
-
-        var fullInput = stringBuilder.ToString();
-        var log = new Logs(ip, request: fullInput, path: path);
-
+        // 🧪 Check for SQL injection
+        var log = new Logs(ip, fullInput, path);
         if (checker.CheckForSqlInjection(fullInput))
         {
             log.Status = "Blocked";
             log.TypeOfAttack = TypeOfAttack.SqlInjection;
         }
+        else
+        {
+            log.Status = "Accepted";
+            log.TypeOfAttack = TypeOfAttack.Protected;
+        }
 
-        await _repository.AddAsync(log);
-        await _repository.SaveChangesAsync();
+        // 📝 Save log
+        await repository.AddAsync(log);
+        await repository.SaveChangesAsync();
 
-        await next(); // continue request
+        // ✅ Continue
+        await next();
     }
 }

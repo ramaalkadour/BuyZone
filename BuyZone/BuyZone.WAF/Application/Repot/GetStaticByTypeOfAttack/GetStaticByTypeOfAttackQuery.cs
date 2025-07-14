@@ -1,20 +1,20 @@
 using BuyZone.WAF.Domain.Enums;
 using MediatR;
 
-namespace BuyZone.WAF.Application.Repot;
-
 public class GetStaticByTypeOfAttackQuery
 {
-    public class Request:IRequest<Response>
+    public class Request : IRequest<Response>
     {
-        public TypeOfAttack ? TypeOfAttack { get; set; }
+        public TypeOfAttack? TypeOfAttack { get; set; }
     }
+
     public class Response
     {
-        public List<Month> Months { get; set; }
-        public class Month
+        public List<DayStatistics> Days { get; set; }
+
+        public class DayStatistics
         {
-            public int MonthNumber { get; set; }
+            public DateTime Date { get; set; }
             public int NumberOfAttempts { get; set; }
         }
     }

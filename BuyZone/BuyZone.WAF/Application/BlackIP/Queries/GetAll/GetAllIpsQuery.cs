@@ -18,6 +18,7 @@ public class GetAllIpsQuery
         public class IpDto
         {
             public Guid Id { get; set; }
+            public int Number { get; set; }
             public string IpAddress { get; set; }
             public long NumberOfRequests { get; set; }
             public DateTime FirstSeen { get; set; }
@@ -27,6 +28,7 @@ public class GetAllIpsQuery
             public static Expression<Func<Domain.Entities.BlockIP, IpDto>> Selector() => e => new IpDto
             {
                 Id = e.Id,
+                Number = e.Number,
                 IpAddress = e.IpAddress,
                 NumberOfRequests = e.NumberOfRequests,
                 Status = e.Status,

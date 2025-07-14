@@ -6,7 +6,6 @@ namespace DefaultNamespace;
 
 public class Employee:User
 {
-    public int Number { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public EmployeeStatus Status { get; set; }

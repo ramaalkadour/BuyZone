@@ -1,10 +1,7 @@
 using BuyZone.Domain;
 using BuyZone.WAF.Domain.Entities;
-using BuyZone.WAF.Domain.Enums;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-
-namespace BuyZone.WAF.Application.Repot;
 
 public class GetStaticByTypeOfAttackHandler : IRequestHandler<GetStaticByTypeOfAttackQuery.Request, GetStaticByTypeOfAttackQuery.Response>
 {
@@ -17,26 +14,29 @@ public class GetStaticByTypeOfAttackHandler : IRequestHandler<GetStaticByTypeOfA
 
     public async Task<GetStaticByTypeOfAttackQuery.Response> Handle(GetStaticByTypeOfAttackQuery.Request request, CancellationToken cancellationToken)
     {
-        var query =  _repository.Query<Domain.Entities.Logs>();
-       
+        var tenDaysAgo = DateTime.Today.AddDays(-10);
+
+        var query = _repository.Query<Logs>()
+            .Where(l => l.DateCreated >= tenDaysAgo);
+
         if (request.TypeOfAttack.HasValue)
         {
             query = query.Where(l => l.TypeOfAttack == request.TypeOfAttack.Value);
         }
-        var groupedByMonth = query
-            .GroupBy(l => l.DateCreated.Month)
-            .Select(g => new GetStaticByTypeOfAttackQuery.Response.Month
+
+        var groupedByDay = await query
+            .GroupBy(l => l.DateCreated.Date)
+            .Select(g => new GetStaticByTypeOfAttackQuery.Response.DayStatistics
             {
-                MonthNumber = g.Key,
+                Date = g.Key,
                 NumberOfAttempts = g.Count()
             })
-            .OrderBy(m => m.MonthNumber)
-            .ToList();
+            .OrderBy(d => d.Date)
+            .ToListAsync(cancellationToken);
 
-        // إنشاء الاستجابة
         var response = new GetStaticByTypeOfAttackQuery.Response
         {
-            Months = groupedByMonth
+            Days = groupedByDay
         };
 
         return response;

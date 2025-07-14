@@ -50,4 +50,9 @@ public class Repository:IRepository
     {
          _context.Set<T>().Update(entity);
     }
+
+    public void Delete<T>(T entity) where T : class, IBaseEntity
+    {
+        _context.Remove(entity);
+    }
 }

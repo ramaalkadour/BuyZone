@@ -25,7 +25,11 @@ public class AddEmployeeHandler:IRequestHandler<AddEmployeeCommand.Request,GetAl
         var employee = new DefaultNamespace.Employee(request.FirstName,request.LastName,request.Email,request.PhoneNumber,request.Status);
         var result=await _userManager.CreateAsync(employee, request.Password);
         if (!result.Succeeded)
-            throw new Exception("failer");
+        {
+            var errors = string.Join("; ", result.Errors.Select(e => e.Description));
+            throw new Exception($"فشل إنشاء الموظف: {errors}");
+        }
+
         var role = await _roleManager.FindByIdAsync(request.RoleId.ToString());
         if (role is not null)
             await _userManager.AddToRoleAsync(employee, role.Name??"");

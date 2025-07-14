@@ -1,5 +1,6 @@
 using BuyZone.Application.Category.Commands;
 using BuyZone.Application.Category.Commands.Add;
+using BuyZone.Application.Category.Commands.Delete;
 using BuyZone.Application.Category.Queries.GetAll;
 using BuyZone.Domain;
 using BuyZone.Infrastructure;
@@ -28,8 +29,16 @@ public class CategoryController : Controller
    }
 
    [HttpPost("Add")]
+   [WafLog]
    public async Task<IActionResult> Add(AddCategoryCommand.Request request)
    {
       return Ok(await _mediator.Send(request));
+   }
+   [HttpDelete("Delete")]
+   [WafLog]
+   public async Task<IActionResult>Delete(DeleteCategoryCommand.Request request)
+   {
+      await _mediator.Send(request);
+      return Ok();
    }
 }

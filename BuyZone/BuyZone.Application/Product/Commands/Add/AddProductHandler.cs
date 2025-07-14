@@ -19,16 +19,15 @@ public class AddProductHandler : IRequestHandler<AddOrUpdateProductCommand.Reque
 
     public async Task<AddOrUpdateProductCommand.Response> Handle(AddOrUpdateProductCommand.Request request, CancellationToken cancellationToken)
     {
+        
+        var imagePath= await _fileService.UploadFileAsync(request.Image, "upload");
         var product = new Domain.Entities.Product
         {
-            Id = Guid.NewGuid(),
             Name = request.Name,
             Description = request.Description,
-            ImageUrl = request.ImageUrl,
             Price = request.Price,
             CategoryId = request.CategoryId
         };
-        var imagePath= await _fileService.UploadFileAsync(request.Image, "upload");
         product.ImageUrl = imagePath;
         await _repository.AddAsync(product);
         await _repository.SaveChangesAsync();
