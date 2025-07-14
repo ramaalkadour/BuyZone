@@ -17,10 +17,12 @@ public class AddOrderHandler : IRequestHandler<AddOrderCommand.Request, GetAllOr
 
     public async Task<GetAllOrdersQuery.Response.OrdersRes> Handle(AddOrderCommand.Request request, CancellationToken cancellationToken)
     {
+        var price = 34;
         var order = new Domain.Entities.Order(
             customerId: request.CustomerId,
             productId: request.ProductId,
-            price: request.Price
+            price: price,
+            quantity: request.Quantity
         );
 
         await _orderRepository.AddAsync(order);

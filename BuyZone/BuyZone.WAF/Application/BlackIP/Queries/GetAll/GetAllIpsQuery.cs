@@ -9,7 +9,7 @@ public class GetAllIpsQuery
 {
     public class Request:IRequest<Response>
     {
-        public IpStatus Status { get; set; }
+        public IpStatus ?Status { get; set; }
     }
 
     public class Response

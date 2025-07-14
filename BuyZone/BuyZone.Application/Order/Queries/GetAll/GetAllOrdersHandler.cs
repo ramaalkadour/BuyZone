@@ -18,6 +18,7 @@ public class GetAllOrdersHandler:IRequestHandler<GetAllOrdersQuery.Request, GetA
     {
         var orders = await _repository.Query<Domain.Entities.Order>()
             .Include(o => o.Product)
+            .Include(o=>o.Customer)
             .Select(GetAllOrdersQuery.Response.OrdersRes.Selector())
             .ToListAsync(cancellationToken);
 

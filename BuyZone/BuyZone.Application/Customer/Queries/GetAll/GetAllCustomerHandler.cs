@@ -18,6 +18,7 @@ public class GetAllCustomerHandler:IRequestHandler<GetAllCustomerQuery.Request,G
     public async Task<GetAllCustomerQuery.Response> Handle(GetAllCustomerQuery.Request request, CancellationToken cancellationToken)
     {
         var customers = await _repository.Query<Domain.Entities.Security.Customer>()
+            .Include(c=>c.Orders)
             .Select(GetAllCustomerQuery.Response.CustomerRes.Selector())
             .ToListAsync(cancellationToken);
         return new GetAllCustomerQuery.Response()

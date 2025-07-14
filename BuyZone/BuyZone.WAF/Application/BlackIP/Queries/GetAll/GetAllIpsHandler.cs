@@ -16,7 +16,7 @@ public class GetAllIpsHandler:IRequestHandler<GetAllIpsQuery.Request,GetAllIpsQu
     public async Task<GetAllIpsQuery.Response> Handle(GetAllIpsQuery.Request request, CancellationToken cancellationToken)
     {
         var ips = await _repository.Query<Domain.Entities.BlockIP>()
-            .Where(b => b.Status == request.Status)
+            .Where(b =>request.Status==null|| b.Status == request.Status)
             .Select(GetAllIpsQuery.Response.IpDto.Selector())
             .ToListAsync(cancellationToken);
         return new GetAllIpsQuery.Response()

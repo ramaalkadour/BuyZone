@@ -28,6 +28,10 @@ public class BuyZoneDbContext:IdentityDbContext<User,Role,Guid>
             .Property(p => p.Number)
             .UseIdentityColumn()
             .ValueGeneratedOnAdd();
+        builder.Entity<Order>()
+            .Property(p => p.Number)
+            .UseIdentityColumn()
+            .ValueGeneratedOnAdd();
         base.OnModelCreating(builder);
        
     }

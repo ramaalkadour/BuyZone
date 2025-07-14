@@ -32,7 +32,7 @@ public class OrderController : Controller
    }
 
    [HttpPost("Add")]
-   public async Task<IActionResult> AddOrder([FromQuery] AddOrderCommand.Request request)
+   public async Task<IActionResult> AddOrder([FromBody] AddOrderCommand.Request request)
    {
       return Ok(await _mediator.Send(request));
    }

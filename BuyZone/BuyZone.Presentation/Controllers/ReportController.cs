@@ -17,10 +17,10 @@ public class ReportController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("customer-orders")]
-    public async Task<IActionResult> GetCustomersWithOrders()
+    [HttpGet("GetReport")]
+    public async Task<IActionResult> GetCustomersWithOrders([FromQuery]GetReportQuery.Request request)
     {
-        var result = await _mediator.Send(new GetReportQuery());
+        var result = await _mediator.Send(request);
         return Ok(result);
     }
 }

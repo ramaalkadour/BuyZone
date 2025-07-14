@@ -17,7 +17,7 @@ public class AddCustomerHandler:IRequestHandler<AddCustomerCommand.Request,GetAl
     public async Task<GetAllCustomerQuery.Response.CustomerRes> Handle(AddCustomerCommand.Request request, CancellationToken cancellationToken)
     {
         var customer = new Domain.Entities.Security.Customer(request.FirstName,request.LastName,request.Email,
-        request.PhoneNumber,request.Address);
+        request.PhoneNumber,request.Address,request.Status);
         var result = await _userManager.CreateAsync(customer, request.Password);
         if(!result.Succeeded)
             throw new Exception("Add Customer Is Failed");

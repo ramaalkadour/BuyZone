@@ -3,6 +3,7 @@ using System;
 using BuyZone.Infrastructure.DbContest;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BuyZone.Infrastructure.Migrations
 {
     [DbContext(typeof(BuyZoneDbContext))]
-    partial class BuyZoneDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250714181143_modify6")]
+    partial class modify6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -412,9 +415,6 @@ namespace BuyZone.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
                     b.HasDiscriminator().HasValue("Customer");
                 });
 
@@ -440,9 +440,6 @@ namespace BuyZone.Infrastructure.Migrations
 
                             t.Property("LastName")
                                 .HasColumnName("Employee_LastName");
-
-                            t.Property("Status")
-                                .HasColumnName("Employee_Status");
                         });
 
                     b.HasDiscriminator().HasValue("Employee");
