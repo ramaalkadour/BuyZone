@@ -3,6 +3,7 @@ using BuyZone.Domain.BaseUser;
 using BuyZone.Domain.Entities;
 using BuyZone.Domain.Entities.Security;
 using BuyZone.WAF.Domain.Entities;
+using BuyZone.WAF.Domain.Enums;
 using DefaultNamespace;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -60,15 +61,15 @@ public class BuyZoneDbContext:IdentityDbContext<User,Role,Guid>
             {
                 Id = Guid.Parse("f1000002-0000-4000-8000-000000000002"),
                 Number = 2,
-                Name = "Novel",
-                ImageUrl = "/images/novel.png",
-                Description = "Bestselling Novel",
-                Price = 20.0,
-                CategoryId = booksCategoryId,
-            }
-        );
+                    Name = "Novel",
+                    ImageUrl = "/images/novel.png",
+                    Description = "Bestselling Novel",
+                    Price = 20.0,
+                    CategoryId = booksCategoryId,
+                }
+            );
 
-        // Data Seeding for Role
+            // Data Seeding for Role
         builder.Entity<Role>().HasData(
             new Role
             {
@@ -179,27 +180,57 @@ public class BuyZoneDbContext:IdentityDbContext<User,Role,Guid>
         var customer2Id = Guid.Parse("b2222222-0000-4000-8000-000000000002");
         var product1Id = Guid.Parse("f1000001-0000-4000-8000-000000000001");
         var product2Id = Guid.Parse("f1000002-0000-4000-8000-000000000002");
-        builder.Entity<Order>().HasData(
-            new
+
+        var random1 = new Random();
+        var ordersSeedData = new List<object>();
+
+        for (int i = 1; i <= 15; i++)
+        {
+            var customerId = (i % 2 == 0) ? customer1Id : customer2Id;
+            var productId = (i % 2 == 0) ? product1Id : product2Id;
+
+            ordersSeedData.Add(new
             {
-                Id = Guid.Parse("d4444444-0000-4000-8000-000000000001"),
-                Number = 1,
-                CustomerId = customer1Id,
-                ProductId = product1Id,
-                DateCreated = new DateTime(2024, 1, 5, 10, 30, 0, DateTimeKind.Utc),
-                Price = 1200.00,
-                Quantity = 1
-            },
-            new
-            {
-                Id = Guid.Parse("d4444444-0000-4000-8000-000000000002"),
-                Number = 2,
-                CustomerId = customer2Id,
-                ProductId = product2Id,
-                DateCreated = new DateTime(2024, 2, 14, 16, 20, 0, DateTimeKind.Utc),
-                Price = 20.00,
-                Quantity = 3
+                Id = Guid.NewGuid(),
+                Number = i,
+                CustomerId = customerId,
+                ProductId = productId,
+                DateCreated = DateTime.UtcNow.AddDays(-random1.Next(1, 10)),
+                Price = Math.Round(random1.NextDouble() * 1000 + 50, 2), // أسعار بين 50 و 1050 تقريباً
+                Quantity = random1.Next(1, 5) // كمية بين 1 و 4
             });
+        }
+
+        builder.Entity<Order>().HasData(ordersSeedData);
+        var random = new Random();
+        var statuses = new[] { "Blocked", "Accepted" };
+        var paths = new[] { "/api/orders", "/api/products", "/order/add", "/category/getall" };
+        var sampleRequests = new[] { "GET", "POST", "PUT", "DELETE" };
+
+        var allAttackTypes = Enum.GetValues(typeof(TypeOfAttack));
+        var logSeedData = new List<Logs>();
+        int idCounter = 1;
+
+        foreach (TypeOfAttack attackType in allAttackTypes)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                logSeedData.Add(new Logs(
+                    ipAddress: $"192.168.1.{random.Next(1,255)}",
+                    typeOfAttack: attackType,
+                    status: statuses[random.Next(statuses.Length)],
+                    request: $"{sampleRequests[random.Next(sampleRequests.Length)]} {paths[random.Next(paths.Length)]}",
+                    dateCreated: DateTime.UtcNow.AddDays(-random.Next(0, 10))
+                )
+                {
+                    Id = Guid.NewGuid(),
+                    Path = paths[random.Next(paths.Length)]
+                });
+                idCounter++;
+            }
+        }
+
+        builder.Entity<Logs>().HasData(logSeedData);
 
         base.OnModelCreating(builder);
     }

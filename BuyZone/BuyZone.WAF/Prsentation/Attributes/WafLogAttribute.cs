@@ -93,8 +93,10 @@ public class WafLogAttribute : Attribute, IAsyncResourceFilter
         {
             log.Status = "Blocked";
             log.TypeOfAttack = TypeOfAttack.SqlInjection;
+            repository.Update(log);
+            await repository.SaveChangesAsync();
             httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-
+            
             var response = new
             {
                 success = false,
@@ -107,10 +109,13 @@ public class WafLogAttribute : Attribute, IAsyncResourceFilter
             return;
 
         }
+
         if (checkerXss.CheckForXss(fullInput))
         {
             log.Status = "Blocked";
             log.TypeOfAttack = TypeOfAttack.XSS;
+            repository.Update(log);
+            await repository.SaveChangesAsync();
             httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
 
             var response = new
@@ -125,11 +130,9 @@ public class WafLogAttribute : Attribute, IAsyncResourceFilter
             return;
 
         }
-        else
-        {
-            log.Status = "Accepted";
-            log.TypeOfAttack = TypeOfAttack.Protected;
-        }
+
+        log.Status = "Accepted";
+        log.TypeOfAttack = TypeOfAttack.Protected;
 
         // 📝 Save log
         await repository.AddAsync(log);
