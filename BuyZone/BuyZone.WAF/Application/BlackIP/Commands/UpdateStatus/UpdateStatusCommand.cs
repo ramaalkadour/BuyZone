@@ -7,7 +7,7 @@ public class UpdateStatusCommand
 {
     public class Request:IRequest
     {
-        public Guid BlackIPId { get; set; }
+        public Guid Id { get; set; }
         public IpStatus Status { get; set; }
     }
 }

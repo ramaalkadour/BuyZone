@@ -16,7 +16,7 @@ public class UpdateStatusHandler:IRequestHandler<UpdateStatusCommand.Request>
     public async Task Handle(UpdateStatusCommand.Request request, CancellationToken cancellationToken)
     {
         var blackIp = await _repository.TrackingQuery<Domain.Entities.BlockIP>()
-            .FirstOrDefaultAsync(b => b.Id == request.BlackIPId, cancellationToken);
+            .FirstOrDefaultAsync(b => b.Id == request.Id, cancellationToken);
         if(blackIp == null)
             throw new Exception("Black IP not found");
         blackIp.Status = request.Status;

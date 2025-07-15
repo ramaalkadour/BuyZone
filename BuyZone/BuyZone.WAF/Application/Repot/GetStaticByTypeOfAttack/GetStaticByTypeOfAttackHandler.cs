@@ -14,7 +14,7 @@ public class GetStaticByTypeOfAttackHandler : IRequestHandler<GetStaticByTypeOfA
 
     public async Task<GetStaticByTypeOfAttackQuery.Response> Handle(GetStaticByTypeOfAttackQuery.Request request, CancellationToken cancellationToken)
     {
-        var tenDaysAgo = DateTime.Today.AddDays(-10);
+        var tenDaysAgo = DateTime.UtcNow.Date.AddDays(-10);
 
         var query = _repository.Query<Logs>()
             .Where(l => l.DateCreated >= tenDaysAgo);

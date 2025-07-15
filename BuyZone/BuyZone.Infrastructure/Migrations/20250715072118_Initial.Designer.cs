@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BuyZone.Infrastructure.Migrations
 {
     [DbContext(typeof(BuyZoneDbContext))]
-    [Migration("20250714181143_modify6")]
-    partial class modify6
+    [Migration("20250715072118_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -116,6 +116,26 @@ namespace BuyZone.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c1a1b1c1-0000-4000-8000-000000000001"),
+                            Description = "Electronic devices and gadgets",
+                            Name = "Electronics"
+                        },
+                        new
+                        {
+                            Id = new Guid("c1a1b1c1-0000-4000-8000-000000000002"),
+                            Description = "Books and literature",
+                            Name = "Books"
+                        },
+                        new
+                        {
+                            Id = new Guid("c1a1b1c1-0000-4000-8000-000000000003"),
+                            Description = "Clothing and accessories",
+                            Name = "Clothing"
+                        });
                 });
 
             modelBuilder.Entity("BuyZone.Domain.Entities.Order", b =>
@@ -152,6 +172,28 @@ namespace BuyZone.Infrastructure.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Orders");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("d4444444-0000-4000-8000-000000000001"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000001"),
+                            DateCreated = new DateTime(2024, 1, 5, 10, 30, 0, 0, DateTimeKind.Utc),
+                            Number = 1,
+                            Price = 1200.0,
+                            ProductId = new Guid("f1000001-0000-4000-8000-000000000001"),
+                            Quantity = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("d4444444-0000-4000-8000-000000000002"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000002"),
+                            DateCreated = new DateTime(2024, 2, 14, 16, 20, 0, 0, DateTimeKind.Utc),
+                            Number = 2,
+                            Price = 20.0,
+                            ProductId = new Guid("f1000002-0000-4000-8000-000000000002"),
+                            Quantity = 3
+                        });
                 });
 
             modelBuilder.Entity("BuyZone.Domain.Entities.Product", b =>
@@ -189,6 +231,28 @@ namespace BuyZone.Infrastructure.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Product");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("f1000001-0000-4000-8000-000000000001"),
+                            CategoryId = new Guid("c1a1b1c1-0000-4000-8000-000000000001"),
+                            Description = "Gaming Laptop",
+                            ImageUrl = "/images/laptop.png",
+                            Name = "Laptop",
+                            Number = 1,
+                            Price = 1200.0
+                        },
+                        new
+                        {
+                            Id = new Guid("f1000002-0000-4000-8000-000000000002"),
+                            CategoryId = new Guid("c1a1b1c1-0000-4000-8000-000000000002"),
+                            Description = "Bestselling Novel",
+                            ImageUrl = "/images/novel.png",
+                            Name = "Novel",
+                            Number = 2,
+                            Price = 20.0
+                        });
                 });
 
             modelBuilder.Entity("BuyZone.Domain.Entities.Security.Role", b =>
@@ -216,6 +280,20 @@ namespace BuyZone.Infrastructure.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a1111111-0000-4000-8000-000000000001"),
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = new Guid("a1111111-0000-4000-8000-000000000002"),
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("BuyZone.WAF.Domain.Entities.BlockIP", b =>
@@ -415,7 +493,54 @@ namespace BuyZone.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
                     b.HasDiscriminator().HasValue("Customer");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("b2222222-0000-4000-8000-000000000001"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "957e574f-2ce3-46eb-98b0-7d4b8a17a501",
+                            Email = "charlie@customer.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "CHARLIE@CUSTOMER.COM",
+                            NormalizedUserName = "CHARLIE@CUSTOMER.COM",
+                            PasswordHash = "hashed_password_here",
+                            PhoneNumber = "1234567890",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "db02f0de-6e90-46dc-8154-112d6a5feeb6",
+                            TwoFactorEnabled = false,
+                            UserName = "charlie@customer.com",
+                            Address = "123 Main St",
+                            FirstName = "Charlie",
+                            LastName = "Brown",
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("b2222222-0000-4000-8000-000000000002"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "44fcafdd-d0df-4974-b0e9-2630685c6bb8",
+                            Email = "dana@customer.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DANA@CUSTOMER.COM",
+                            NormalizedUserName = "DANA@CUSTOMER.COM",
+                            PasswordHash = "hashed_password_here",
+                            PhoneNumber = "0987654321",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "ca118393-bbe9-4f74-a5b8-56f2728d85b6",
+                            TwoFactorEnabled = false,
+                            UserName = "dana@customer.com",
+                            Address = "456 Elm St",
+                            FirstName = "Dana",
+                            LastName = "Smith",
+                            Status = 0
+                        });
                 });
 
             modelBuilder.Entity("DefaultNamespace.Employee", b =>
@@ -440,9 +565,54 @@ namespace BuyZone.Infrastructure.Migrations
 
                             t.Property("LastName")
                                 .HasColumnName("Employee_LastName");
+
+                            t.Property("Status")
+                                .HasColumnName("Employee_Status");
                         });
 
                     b.HasDiscriminator().HasValue("Employee");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("e3333333-0000-4000-8000-000000000001"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "6fe2fa4a-c630-4b4a-b3fd-d53f40b0f9da",
+                            Email = "alice@company.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ALICE@COMPANY.COM",
+                            NormalizedUserName = "ALICE@COMPANY.COM",
+                            PasswordHash = "",
+                            PhoneNumber = "999888777",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "998dc1ba-ae75-4e5b-ba9e-43d369006f7c",
+                            TwoFactorEnabled = false,
+                            UserName = "alice@company.com",
+                            FirstName = "Alice",
+                            LastName = "Johnson",
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("e3333133-0000-4000-8000-000000000001"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e4a1aefd-90a7-4b76-a96d-43df06e2370c",
+                            Email = "bob@company.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "BOB@COMPANY.COM",
+                            NormalizedUserName = "BOB@COMPANY.COM",
+                            PasswordHash = "",
+                            PhoneNumber = "888777666",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "f231ddeb-6eff-45ea-aa07-17ed255d9dd8",
+                            TwoFactorEnabled = false,
+                            UserName = "bob@company.com",
+                            FirstName = "Bob",
+                            LastName = "Walker",
+                            Status = 0
+                        });
                 });
 
             modelBuilder.Entity("BuyZone.Domain.Entities.Order", b =>

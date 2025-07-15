@@ -18,6 +18,7 @@ namespace BuyZone.Presentation.Controllers
         }
         
         [HttpGet("GetAll",Name = "GetAll")]
+        [WafLog]
         public async Task<IActionResult> GetAll([FromQuery]GetAllEmployeesQuery.Request request)
         {
             var result = await _mediator.Send(request);
@@ -25,12 +26,14 @@ namespace BuyZone.Presentation.Controllers
         }
 
         [HttpPost("Add",Name = "Add")]
+        [WafLog]
         public async Task<IActionResult> Add(AddEmployeeCommand.Request request)
         {
             var result = await _mediator.Send(request);
             return Ok();
         }
         [HttpDelete("Delete")]
+        [WafLog]
         public async Task<IActionResult>Delete(DeleteEmployeeCommand.Request request)
         {
             await _mediator.Send(request);

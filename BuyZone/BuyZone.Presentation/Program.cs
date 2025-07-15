@@ -16,7 +16,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddSingleton<RequestReader>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors(options =>
 {
@@ -74,13 +74,14 @@ builder.Services.AddMediatR(o => o.RegisterServicesFromAssemblies(typeof(Class1)
 builder.Services.AddMediatR(o => o.RegisterServicesFromAssemblies(typeof(AssemblyReference).Assembly));
 builder.Services.AddScoped(typeof(WafLogAttribute));
 builder.Services.AddScoped(typeof(SqlInjectionChecker));
+builder.Services.AddScoped(typeof(XssInjectionChecker));
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<RateLimiter>(provider =>
 {
     var cache = provider.GetRequiredService<IMemoryCache>();
-    return new RateLimiter(cache, limit: 5, window: TimeSpan.FromSeconds(10));
+    return new RateLimiter(cache, limit: 10, window: TimeSpan.FromSeconds(20));
 });
-builder.Services.AddSingleton<RequestReader>();
+
 
 
 var app = builder.Build();
@@ -94,6 +95,12 @@ app.UseStaticFiles(); // تأكد من وجود هذا
 
 app.MapControllers();
 app.UseCors("AllowReactApp");
+using(var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<BuyZoneDbContext>();
+    db.Database.Migrate();
+}
+
 app.Run();
 public class StartUp
 {

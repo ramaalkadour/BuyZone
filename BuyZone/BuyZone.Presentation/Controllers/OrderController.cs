@@ -26,24 +26,28 @@ public class OrderController : Controller
    }
 
    [HttpGet("GetById")]
+   [WafLog]
    public async Task<IActionResult> GetById([FromQuery] GetByIdOrderQuery.Request request)
    {
       return Ok(await _mediator.Send(request));
    }
 
    [HttpPost("Add")]
+   [WafLog]
    public async Task<IActionResult> AddOrder([FromBody] AddOrderCommand.Request request)
    {
       return Ok(await _mediator.Send(request));
    }
 
    [HttpPost("Update")]
+   [WafLog]
    public async Task<IActionResult> UpdateOrder([FromQuery] UpdateOrderCommand.Request request)
    {
       return Ok(await _mediator.Send(request));
    }
    
    [HttpGet("GetReport")]
+   [WafLog]
    public async Task<IActionResult> GetReport([FromQuery] GetReportQuery.Request request)
    {
       return Ok(await _mediator.Send(request));

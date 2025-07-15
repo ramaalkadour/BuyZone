@@ -15,6 +15,7 @@ public class GetAllRolesQuery
         {
             public Guid Id { get; set; }
             public string Name { get; set; }
+            public int NumberOfEmployees { get; set; } = 3;
         }
     }
 }

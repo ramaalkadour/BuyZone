@@ -23,6 +23,7 @@ public class GetAllProductsQuery
             public string Description { get; set; }
             public double Price { get; set; }
             public Guid CategoryId { get; set; }
+            public string Category { get; set; }
             public int OrderCount { get; set; }
 
             public static Expression<Func<Domain.Entities.Product, ProductRes>> Selector() => e => new ProductRes
@@ -34,6 +35,7 @@ public class GetAllProductsQuery
                 Description = e.Description,
                 Price = e.Price,
                 CategoryId = e.CategoryId,
+                Category = e.Category.Name,
                 OrderCount = e.Orders.Count
             };
         }

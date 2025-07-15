@@ -20,6 +20,7 @@ namespace BuyZone.Presentation
         }
 
         [HttpGet]
+        [WafLog]
         public async Task<IActionResult> GetAll()
         {
             var result = await _mediator.Send(new GetAllRolesQuery.Request());
@@ -27,6 +28,7 @@ namespace BuyZone.Presentation
         }
 
         [HttpGet("{id:guid}")]
+        [WafLog]
         public async Task<IActionResult> GetById(Guid id)
         {
             var result = await _mediator.Send(new GetRoleByIdQuery.Request { Id = id });
@@ -34,6 +36,7 @@ namespace BuyZone.Presentation
         }
 
         [HttpPost]
+        [WafLog]
         public async Task<IActionResult> Create(AddRoleCommand.Request request)
         {
             var result = await _mediator.Send(request);
@@ -41,6 +44,7 @@ namespace BuyZone.Presentation
         }
 
         [HttpPut("{id:guid}")]
+        [WafLog]
         public async Task<IActionResult> Update(Guid id, UpdateRoleCommand.Request request)
         {
             if (id != request.Id)
@@ -50,6 +54,7 @@ namespace BuyZone.Presentation
         }
 
         [HttpDelete("{id:guid}")]
+        [WafLog]
         public async Task<IActionResult> Delete(Guid id)
         {
             var result = await _mediator.Send(new DeleteRoleCommand.Request { Id = id });

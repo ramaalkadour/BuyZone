@@ -15,6 +15,7 @@ public class ReportController : Controller
     }
 
     [HttpGet("GetAll")]
+    [WafLog]
     public async Task<IActionResult> GetAll([FromQuery]GetStaticByTypeOfAttackQuery.Request request)
     {
         return Ok(await _mediator.Send(request));

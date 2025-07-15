@@ -21,8 +21,8 @@ public class GetAllIpsQuery
             public int Number { get; set; }
             public string IpAddress { get; set; }
             public long NumberOfRequests { get; set; }
-            public DateTime FirstSeen { get; set; }
-            public DateTime LastSeen { get; set; }
+            public string FirstSeen { get; set; }
+            public string LastSeen { get; set; }
             public int BlockCount { get; set; }
             public IpStatus Status { get; set; }
             public static Expression<Func<Domain.Entities.BlockIP, IpDto>> Selector() => e => new IpDto
@@ -32,8 +32,8 @@ public class GetAllIpsQuery
                 IpAddress = e.IpAddress,
                 NumberOfRequests = e.NumberOfRequests,
                 Status = e.Status,
-                FirstSeen = e.FirstSeen,
-                LastSeen = e.LastSeen,
+                FirstSeen = e.FirstSeen.ToString("yyyy-MM-dd HH:mm:ss"),
+                LastSeen = e.LastSeen.ToString("yyyy-MM-dd HH:mm:ss"),
                 BlockCount = e.BlockedCount
             };
         }

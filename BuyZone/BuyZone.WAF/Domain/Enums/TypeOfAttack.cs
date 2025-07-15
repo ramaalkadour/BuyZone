@@ -4,5 +4,6 @@ public enum TypeOfAttack
 {
     SqlInjection,
     RateLimiting,
+    XSS,
     Protected,
 }

@@ -4,6 +4,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace BuyZone.Infrastructure.Migrations
 {
     /// <inheritdoc />
@@ -34,7 +36,11 @@ namespace BuyZone.Infrastructure.Migrations
                     Discriminator = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: false),
                     FirstName = table.Column<string>(type: "text", nullable: true),
                     LastName = table.Column<string>(type: "text", nullable: true),
+                    Address = table.Column<string>(type: "text", nullable: true),
                     Status = table.Column<int>(type: "integer", nullable: true),
+                    Employee_FirstName = table.Column<string>(type: "text", nullable: true),
+                    Employee_LastName = table.Column<string>(type: "text", nullable: true),
+                    Employee_Status = table.Column<int>(type: "integer", nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -60,6 +66,8 @@ namespace BuyZone.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Number = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     NumberOfRequests = table.Column<long>(type: "bigint", nullable: false),
                     IpAddress = table.Column<string>(type: "text", nullable: false),
                     SqlInjectionAttempts = table.Column<int>(type: "integer", nullable: false),
@@ -240,19 +248,84 @@ namespace BuyZone.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Number = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     CustomerId = table.Column<Guid>(type: "uuid", nullable: false),
                     ProductId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Price = table.Column<double>(type: "double precision", nullable: false)
+                    DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Price = table.Column<double>(type: "double precision", nullable: false),
+                    Quantity = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_Product_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Product",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { new Guid("a1111111-0000-4000-8000-000000000001"), null, "Admin", "ADMIN" },
+                    { new Guid("a1111111-0000-4000-8000-000000000002"), null, "User", "USER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { new Guid("b2222222-0000-4000-8000-000000000001"), 0, "123 Main St", "957e574f-2ce3-46eb-98b0-7d4b8a17a501", "Customer", "charlie@customer.com", true, "Charlie", "Brown", false, null, "CHARLIE@CUSTOMER.COM", "CHARLIE@CUSTOMER.COM", "hashed_password_here", "1234567890", false, "db02f0de-6e90-46dc-8154-112d6a5feeb6", 0, false, "charlie@customer.com" },
+                    { new Guid("b2222222-0000-4000-8000-000000000002"), 0, "456 Elm St", "44fcafdd-d0df-4974-b0e9-2630685c6bb8", "Customer", "dana@customer.com", true, "Dana", "Smith", false, null, "DANA@CUSTOMER.COM", "DANA@CUSTOMER.COM", "hashed_password_here", "0987654321", false, "ca118393-bbe9-4f74-a5b8-56f2728d85b6", 0, false, "dana@customer.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "Employee_FirstName", "Employee_LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Employee_Status", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { new Guid("e3333133-0000-4000-8000-000000000001"), 0, "e4a1aefd-90a7-4b76-a96d-43df06e2370c", "Employee", "bob@company.com", true, "Bob", "Walker", false, null, "BOB@COMPANY.COM", "BOB@COMPANY.COM", "", "888777666", false, "f231ddeb-6eff-45ea-aa07-17ed255d9dd8", 0, false, "bob@company.com" },
+                    { new Guid("e3333333-0000-4000-8000-000000000001"), 0, "6fe2fa4a-c630-4b4a-b3fd-d53f40b0f9da", "Employee", "alice@company.com", true, "Alice", "Johnson", false, null, "ALICE@COMPANY.COM", "ALICE@COMPANY.COM", "", "999888777", false, "998dc1ba-ae75-4e5b-ba9e-43d369006f7c", 0, false, "alice@company.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Description", "Name" },
+                values: new object[,]
+                {
+                    { new Guid("c1a1b1c1-0000-4000-8000-000000000001"), "Electronic devices and gadgets", "Electronics" },
+                    { new Guid("c1a1b1c1-0000-4000-8000-000000000002"), "Books and literature", "Books" },
+                    { new Guid("c1a1b1c1-0000-4000-8000-000000000003"), "Clothing and accessories", "Clothing" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "Id", "CategoryId", "Description", "ImageUrl", "Name", "Number", "Price" },
+                values: new object[,]
+                {
+                    { new Guid("f1000001-0000-4000-8000-000000000001"), new Guid("c1a1b1c1-0000-4000-8000-000000000001"), "Gaming Laptop", "/images/laptop.png", "Laptop", 1, 1200.0 },
+                    { new Guid("f1000002-0000-4000-8000-000000000002"), new Guid("c1a1b1c1-0000-4000-8000-000000000002"), "Bestselling Novel", "/images/novel.png", "Novel", 2, 20.0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Orders",
+                columns: new[] { "Id", "CustomerId", "DateCreated", "Number", "Price", "ProductId", "Quantity" },
+                values: new object[,]
+                {
+                    { new Guid("d4444444-0000-4000-8000-000000000001"), new Guid("b2222222-0000-4000-8000-000000000001"), new DateTime(2024, 1, 5, 10, 30, 0, 0, DateTimeKind.Utc), 1, 1200.0, new Guid("f1000001-0000-4000-8000-000000000001"), 1 },
+                    { new Guid("d4444444-0000-4000-8000-000000000002"), new Guid("b2222222-0000-4000-8000-000000000002"), new DateTime(2024, 2, 14, 16, 20, 0, 0, DateTimeKind.Utc), 2, 20.0, new Guid("f1000002-0000-4000-8000-000000000002"), 3 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -291,6 +364,11 @@ namespace BuyZone.Infrastructure.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_CustomerId",
+                table: "Orders",
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_ProductId",

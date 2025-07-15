@@ -18,6 +18,7 @@ public class ReportController : ControllerBase
     }
 
     [HttpGet("GetReport")]
+    [WafLog]
     public async Task<IActionResult> GetCustomersWithOrders([FromQuery]GetReportQuery.Request request)
     {
         var result = await _mediator.Send(request);

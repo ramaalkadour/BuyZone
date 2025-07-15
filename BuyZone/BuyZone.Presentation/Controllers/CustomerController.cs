@@ -17,6 +17,7 @@ namespace BuyZone.Presentation.Controllers
         }
 
         [HttpGet("GetAll", Name = "GetAllCustomers")]
+        [WafLog]
         public async Task<IActionResult> GetAll([FromQuery]GetAllCustomerQuery.Request request)
         {
             var result = await _mediator.Send(request);
@@ -24,6 +25,7 @@ namespace BuyZone.Presentation.Controllers
         }
 
         [HttpPost("Add", Name = "AddCustomer")]
+        [WafLog]
         public async Task<IActionResult> Add(AddCustomerCommand.Request request)
         {
             var result = await _mediator.Send(request);
