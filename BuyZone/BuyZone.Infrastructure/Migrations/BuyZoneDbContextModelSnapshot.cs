@@ -173,23 +173,153 @@ namespace BuyZone.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d4444444-0000-4000-8000-000000000001"),
-                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000001"),
-                            DateCreated = new DateTime(2024, 1, 5, 10, 30, 0, 0, DateTimeKind.Utc),
+                            Id = new Guid("829fe8e2-f135-4e0e-a076-aca633f11d2c"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000002"),
+                            DateCreated = new DateTime(2025, 7, 6, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(2899),
                             Number = 1,
-                            Price = 1200.0,
-                            ProductId = new Guid("f1000001-0000-4000-8000-000000000001"),
+                            Price = 166.00999999999999,
+                            ProductId = new Guid("f1000002-0000-4000-8000-000000000002"),
                             Quantity = 1
                         },
                         new
                         {
-                            Id = new Guid("d4444444-0000-4000-8000-000000000002"),
-                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000002"),
-                            DateCreated = new DateTime(2024, 2, 14, 16, 20, 0, 0, DateTimeKind.Utc),
+                            Id = new Guid("187e41f2-82e1-4bb1-ba55-c1342d8ce656"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000001"),
+                            DateCreated = new DateTime(2025, 7, 9, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(2923),
                             Number = 2,
-                            Price = 20.0,
+                            Price = 99.75,
+                            ProductId = new Guid("f1000001-0000-4000-8000-000000000001"),
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("c0c099ae-5858-4db2-b6ac-c621a921904b"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000002"),
+                            DateCreated = new DateTime(2025, 7, 11, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(2933),
+                            Number = 3,
+                            Price = 335.32999999999998,
+                            ProductId = new Guid("f1000002-0000-4000-8000-000000000002"),
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("3798dcbc-7a3c-4eb8-bf56-afd3eeba9665"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000001"),
+                            DateCreated = new DateTime(2025, 7, 9, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(2943),
+                            Number = 4,
+                            Price = 652.66999999999996,
+                            ProductId = new Guid("f1000001-0000-4000-8000-000000000001"),
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            Id = new Guid("323f872a-2086-4d61-a87e-243f1ccacbe0"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000002"),
+                            DateCreated = new DateTime(2025, 7, 10, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(2954),
+                            Number = 5,
+                            Price = 919.44000000000005,
+                            ProductId = new Guid("f1000002-0000-4000-8000-000000000002"),
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("c4de6e46-4904-40fa-be73-1ef31c9efba6"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000001"),
+                            DateCreated = new DateTime(2025, 7, 13, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(2966),
+                            Number = 6,
+                            Price = 238.52000000000001,
+                            ProductId = new Guid("f1000001-0000-4000-8000-000000000001"),
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("a4529113-bc9b-4008-a7a6-d0d9310fc994"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000002"),
+                            DateCreated = new DateTime(2025, 7, 11, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(2976),
+                            Number = 7,
+                            Price = 623.51999999999998,
                             ProductId = new Guid("f1000002-0000-4000-8000-000000000002"),
                             Quantity = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("52454ba9-16a3-4362-a5da-cf0ae00b4915"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000001"),
+                            DateCreated = new DateTime(2025, 7, 10, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(2986),
+                            Number = 8,
+                            Price = 832.25999999999999,
+                            ProductId = new Guid("f1000001-0000-4000-8000-000000000001"),
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("92a82576-600f-48ab-a36a-5e6a143036d9"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000002"),
+                            DateCreated = new DateTime(2025, 7, 13, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(2996),
+                            Number = 9,
+                            Price = 961.98000000000002,
+                            ProductId = new Guid("f1000002-0000-4000-8000-000000000002"),
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("8e8111d7-26e6-4570-a692-7c12ceb95e1c"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000001"),
+                            DateCreated = new DateTime(2025, 7, 7, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3007),
+                            Number = 10,
+                            Price = 387.60000000000002,
+                            ProductId = new Guid("f1000001-0000-4000-8000-000000000001"),
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("29480091-26fd-48d1-82be-b737bdba2675"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000002"),
+                            DateCreated = new DateTime(2025, 7, 7, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3017),
+                            Number = 11,
+                            Price = 607.10000000000002,
+                            ProductId = new Guid("f1000002-0000-4000-8000-000000000002"),
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("52d81af7-f371-45a2-978a-45b084df9c1d"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000001"),
+                            DateCreated = new DateTime(2025, 7, 6, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3027),
+                            Number = 12,
+                            Price = 899.13,
+                            ProductId = new Guid("f1000001-0000-4000-8000-000000000001"),
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            Id = new Guid("43b92e8c-dd8d-408a-9121-c7b6037d5dc1"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000002"),
+                            DateCreated = new DateTime(2025, 7, 14, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3037),
+                            Number = 13,
+                            Price = 695.71000000000004,
+                            ProductId = new Guid("f1000002-0000-4000-8000-000000000002"),
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("5008f69d-e143-4954-bc98-d672a1272477"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000001"),
+                            DateCreated = new DateTime(2025, 7, 10, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3047),
+                            Number = 14,
+                            Price = 848.58000000000004,
+                            ProductId = new Guid("f1000001-0000-4000-8000-000000000001"),
+                            Quantity = 4
+                        },
+                        new
+                        {
+                            Id = new Guid("2931c1be-ddf7-4e6c-b85d-4df1a21d8395"),
+                            CustomerId = new Guid("b2222222-0000-4000-8000-000000000002"),
+                            DateCreated = new DateTime(2025, 7, 10, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3057),
+                            Number = 15,
+                            Price = 574.38999999999999,
+                            ProductId = new Guid("f1000002-0000-4000-8000-000000000002"),
+                            Quantity = 4
                         });
                 });
 
@@ -369,6 +499,408 @@ namespace BuyZone.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Logs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a356a3c7-7907-4098-aef9-972186c739d2"),
+                            DateCreated = new DateTime(2025, 7, 10, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3213),
+                            IpAddress = "192.168.1.71",
+                            Path = "/order/add",
+                            Request = "GET /category/getall",
+                            Status = "Blocked",
+                            TypeOfAttack = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("a61fce81-3813-4eb7-853a-06830e92b939"),
+                            DateCreated = new DateTime(2025, 7, 9, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3239),
+                            IpAddress = "192.168.1.245",
+                            Path = "/api/orders",
+                            Request = "POST /category/getall",
+                            Status = "Accepted",
+                            TypeOfAttack = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("3695ddf7-dddb-4a31-8694-f2d4756b0690"),
+                            DateCreated = new DateTime(2025, 7, 12, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3252),
+                            IpAddress = "192.168.1.245",
+                            Path = "/category/getall",
+                            Request = "GET /api/products",
+                            Status = "Accepted",
+                            TypeOfAttack = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("952d7f4e-ae73-4907-9f73-65fb021e2343"),
+                            DateCreated = new DateTime(2025, 7, 14, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3264),
+                            IpAddress = "192.168.1.242",
+                            Path = "/api/orders",
+                            Request = "DELETE /order/add",
+                            Status = "Accepted",
+                            TypeOfAttack = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("3fa8c35f-d50e-47cd-8230-cbfce7af740c"),
+                            DateCreated = new DateTime(2025, 7, 9, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3277),
+                            IpAddress = "192.168.1.150",
+                            Path = "/api/products",
+                            Request = "DELETE /api/products",
+                            Status = "Accepted",
+                            TypeOfAttack = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("466487d1-6593-40c5-91f5-575d952b9731"),
+                            DateCreated = new DateTime(2025, 7, 13, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3291),
+                            IpAddress = "192.168.1.149",
+                            Path = "/category/getall",
+                            Request = "POST /api/orders",
+                            Status = "Accepted",
+                            TypeOfAttack = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("afcd1e4c-ce66-4337-ac60-3fa32a6959fc"),
+                            DateCreated = new DateTime(2025, 7, 7, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3304),
+                            IpAddress = "192.168.1.28",
+                            Path = "/category/getall",
+                            Request = "POST /api/products",
+                            Status = "Blocked",
+                            TypeOfAttack = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("4ec4f5f9-46de-40da-9788-4c599bf6333a"),
+                            DateCreated = new DateTime(2025, 7, 6, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3316),
+                            IpAddress = "192.168.1.241",
+                            Path = "/category/getall",
+                            Request = "POST /api/orders",
+                            Status = "Accepted",
+                            TypeOfAttack = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("e68b8e39-b75d-4605-8a96-df611b52d328"),
+                            DateCreated = new DateTime(2025, 7, 8, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3329),
+                            IpAddress = "192.168.1.50",
+                            Path = "/category/getall",
+                            Request = "DELETE /api/orders",
+                            Status = "Blocked",
+                            TypeOfAttack = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("2c8b3255-be42-4352-be61-95a0e696faa9"),
+                            DateCreated = new DateTime(2025, 7, 14, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3342),
+                            IpAddress = "192.168.1.144",
+                            Path = "/order/add",
+                            Request = "PUT /api/products",
+                            Status = "Accepted",
+                            TypeOfAttack = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("4a403a6c-c9bb-4d30-80d1-026767bde8ed"),
+                            DateCreated = new DateTime(2025, 7, 9, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3357),
+                            IpAddress = "192.168.1.215",
+                            Path = "/api/products",
+                            Request = "POST /category/getall",
+                            Status = "Blocked",
+                            TypeOfAttack = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("67e8f6f0-5352-4fe0-ab88-dbb99d98ad9f"),
+                            DateCreated = new DateTime(2025, 7, 12, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3369),
+                            IpAddress = "192.168.1.206",
+                            Path = "/category/getall",
+                            Request = "GET /category/getall",
+                            Status = "Blocked",
+                            TypeOfAttack = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("c8ab1d33-9ff4-4251-a94e-4ddb6a0e930a"),
+                            DateCreated = new DateTime(2025, 7, 13, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3382),
+                            IpAddress = "192.168.1.45",
+                            Path = "/api/products",
+                            Request = "PUT /api/orders",
+                            Status = "Accepted",
+                            TypeOfAttack = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("922ae683-fd6f-4dd1-a16d-6a7a302004c8"),
+                            DateCreated = new DateTime(2025, 7, 9, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3394),
+                            IpAddress = "192.168.1.251",
+                            Path = "/api/products",
+                            Request = "POST /api/products",
+                            Status = "Accepted",
+                            TypeOfAttack = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("26d95f2a-b4f7-4153-a322-1ea6e974f13f"),
+                            DateCreated = new DateTime(2025, 7, 7, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3406),
+                            IpAddress = "192.168.1.205",
+                            Path = "/api/products",
+                            Request = "DELETE /api/orders",
+                            Status = "Accepted",
+                            TypeOfAttack = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("3465a06b-9a5d-414f-829e-2c1d1f9dba77"),
+                            DateCreated = new DateTime(2025, 7, 11, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3418),
+                            IpAddress = "192.168.1.40",
+                            Path = "/category/getall",
+                            Request = "DELETE /order/add",
+                            Status = "Accepted",
+                            TypeOfAttack = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("9e2fa1cf-5863-4102-bdd6-6c02963b6814"),
+                            DateCreated = new DateTime(2025, 7, 8, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3430),
+                            IpAddress = "192.168.1.192",
+                            Path = "/api/products",
+                            Request = "DELETE /category/getall",
+                            Status = "Accepted",
+                            TypeOfAttack = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("ce41899e-7c3b-4d64-858c-043667c36e05"),
+                            DateCreated = new DateTime(2025, 7, 6, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3444),
+                            IpAddress = "192.168.1.97",
+                            Path = "/order/add",
+                            Request = "POST /api/products",
+                            Status = "Blocked",
+                            TypeOfAttack = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("325cd9be-bf5b-425b-bdc7-966202c9f7b0"),
+                            DateCreated = new DateTime(2025, 7, 6, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3456),
+                            IpAddress = "192.168.1.201",
+                            Path = "/order/add",
+                            Request = "DELETE /api/products",
+                            Status = "Accepted",
+                            TypeOfAttack = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("a6faf414-677b-4e52-827a-36159e3787e7"),
+                            DateCreated = new DateTime(2025, 7, 9, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3468),
+                            IpAddress = "192.168.1.206",
+                            Path = "/api/orders",
+                            Request = "DELETE /api/products",
+                            Status = "Accepted",
+                            TypeOfAttack = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("e5a27a3b-1b34-4395-9624-60c2e23900bd"),
+                            DateCreated = new DateTime(2025, 7, 12, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3482),
+                            IpAddress = "192.168.1.219",
+                            Path = "/api/products",
+                            Request = "POST /api/products",
+                            Status = "Accepted",
+                            TypeOfAttack = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("bc114754-b808-461b-8dae-e8c938470f97"),
+                            DateCreated = new DateTime(2025, 7, 13, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3494),
+                            IpAddress = "192.168.1.10",
+                            Path = "/category/getall",
+                            Request = "POST /order/add",
+                            Status = "Blocked",
+                            TypeOfAttack = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("ed521cec-80df-4120-b924-b141c056592d"),
+                            DateCreated = new DateTime(2025, 7, 12, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3506),
+                            IpAddress = "192.168.1.121",
+                            Path = "/api/orders",
+                            Request = "PUT /category/getall",
+                            Status = "Accepted",
+                            TypeOfAttack = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("96d7f7cb-644b-4c01-b975-5793c675d44a"),
+                            DateCreated = new DateTime(2025, 7, 10, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3519),
+                            IpAddress = "192.168.1.125",
+                            Path = "/order/add",
+                            Request = "GET /category/getall",
+                            Status = "Blocked",
+                            TypeOfAttack = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("67976db2-5652-4f16-b194-3222861a4300"),
+                            DateCreated = new DateTime(2025, 7, 10, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3531),
+                            IpAddress = "192.168.1.28",
+                            Path = "/api/products",
+                            Request = "PUT /category/getall",
+                            Status = "Blocked",
+                            TypeOfAttack = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("cfbe8c94-8ef7-4f1c-8562-a43ae53fff97"),
+                            DateCreated = new DateTime(2025, 7, 7, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3577),
+                            IpAddress = "192.168.1.108",
+                            Path = "/api/orders",
+                            Request = "POST /api/products",
+                            Status = "Accepted",
+                            TypeOfAttack = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("a2633b95-2813-48b7-bbe8-2621de600947"),
+                            DateCreated = new DateTime(2025, 7, 10, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3590),
+                            IpAddress = "192.168.1.222",
+                            Path = "/order/add",
+                            Request = "POST /api/products",
+                            Status = "Blocked",
+                            TypeOfAttack = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("e8999040-5555-457a-97fc-abfb9cf03ae5"),
+                            DateCreated = new DateTime(2025, 7, 12, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3602),
+                            IpAddress = "192.168.1.98",
+                            Path = "/api/orders",
+                            Request = "GET /api/products",
+                            Status = "Accepted",
+                            TypeOfAttack = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("0ce814fd-0a59-4a54-bfbe-09b644a0398a"),
+                            DateCreated = new DateTime(2025, 7, 12, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3614),
+                            IpAddress = "192.168.1.62",
+                            Path = "/api/products",
+                            Request = "POST /api/products",
+                            Status = "Blocked",
+                            TypeOfAttack = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("cefca09c-5ac9-43cf-a748-a6bcd053f566"),
+                            DateCreated = new DateTime(2025, 7, 15, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3626),
+                            IpAddress = "192.168.1.60",
+                            Path = "/api/orders",
+                            Request = "DELETE /api/orders",
+                            Status = "Accepted",
+                            TypeOfAttack = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("9c64666d-e044-4e2d-bd92-751b298647de"),
+                            DateCreated = new DateTime(2025, 7, 7, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3640),
+                            IpAddress = "192.168.1.114",
+                            Path = "/api/orders",
+                            Request = "DELETE /api/products",
+                            Status = "Accepted",
+                            TypeOfAttack = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("c3851274-c28b-4fa7-8d5a-d4eeeb4fdc47"),
+                            DateCreated = new DateTime(2025, 7, 12, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3653),
+                            IpAddress = "192.168.1.15",
+                            Path = "/category/getall",
+                            Request = "POST /order/add",
+                            Status = "Accepted",
+                            TypeOfAttack = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("a3bf2e9f-d423-498a-90b8-833bb5a9cb8b"),
+                            DateCreated = new DateTime(2025, 7, 10, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3665),
+                            IpAddress = "192.168.1.202",
+                            Path = "/order/add",
+                            Request = "POST /category/getall",
+                            Status = "Accepted",
+                            TypeOfAttack = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("fb03428e-47ba-43ca-b6b4-03975e3ff1f7"),
+                            DateCreated = new DateTime(2025, 7, 9, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3679),
+                            IpAddress = "192.168.1.188",
+                            Path = "/order/add",
+                            Request = "PUT /category/getall",
+                            Status = "Blocked",
+                            TypeOfAttack = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("b48301c6-9ffd-45f5-97c3-e95b79fbb8ca"),
+                            DateCreated = new DateTime(2025, 7, 15, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3691),
+                            IpAddress = "192.168.1.223",
+                            Path = "/order/add",
+                            Request = "PUT /order/add",
+                            Status = "Accepted",
+                            TypeOfAttack = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("8b8ef559-db62-453b-87fb-1d0f28fa564c"),
+                            DateCreated = new DateTime(2025, 7, 10, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3704),
+                            IpAddress = "192.168.1.96",
+                            Path = "/category/getall",
+                            Request = "PUT /api/products",
+                            Status = "Accepted",
+                            TypeOfAttack = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("fbc11bf0-f37a-48cf-93a0-79bd38bb87a3"),
+                            DateCreated = new DateTime(2025, 7, 7, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3716),
+                            IpAddress = "192.168.1.75",
+                            Path = "/order/add",
+                            Request = "GET /category/getall",
+                            Status = "Blocked",
+                            TypeOfAttack = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("3d9c60f5-00b4-4717-acc8-49694c559b73"),
+                            DateCreated = new DateTime(2025, 7, 11, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3728),
+                            IpAddress = "192.168.1.167",
+                            Path = "/category/getall",
+                            Request = "PUT /category/getall",
+                            Status = "Blocked",
+                            TypeOfAttack = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("5742f827-326e-42d8-a047-01ac0836b53a"),
+                            DateCreated = new DateTime(2025, 7, 8, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3741),
+                            IpAddress = "192.168.1.37",
+                            Path = "/api/products",
+                            Request = "PUT /api/orders",
+                            Status = "Blocked",
+                            TypeOfAttack = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("1b380af9-7c90-4d32-8809-ed4a8cb49249"),
+                            DateCreated = new DateTime(2025, 7, 10, 15, 11, 24, 245, DateTimeKind.Utc).AddTicks(3753),
+                            IpAddress = "192.168.1.13",
+                            Path = "/category/getall",
+                            Request = "GET /api/orders",
+                            Status = "Accepted",
+                            TypeOfAttack = 3
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -500,7 +1032,7 @@ namespace BuyZone.Infrastructure.Migrations
                         {
                             Id = new Guid("b2222222-0000-4000-8000-000000000001"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "957e574f-2ce3-46eb-98b0-7d4b8a17a501",
+                            ConcurrencyStamp = "d899d946-0716-4bb6-874b-ed090a1d751b",
                             Email = "charlie@customer.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -509,7 +1041,7 @@ namespace BuyZone.Infrastructure.Migrations
                             PasswordHash = "hashed_password_here",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "db02f0de-6e90-46dc-8154-112d6a5feeb6",
+                            SecurityStamp = "64e934db-ef77-46dd-bde7-fce93471e1db",
                             TwoFactorEnabled = false,
                             UserName = "charlie@customer.com",
                             Address = "123 Main St",
@@ -521,7 +1053,7 @@ namespace BuyZone.Infrastructure.Migrations
                         {
                             Id = new Guid("b2222222-0000-4000-8000-000000000002"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "44fcafdd-d0df-4974-b0e9-2630685c6bb8",
+                            ConcurrencyStamp = "1d781832-9e18-4f76-bb70-af1b2b918911",
                             Email = "dana@customer.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -530,7 +1062,7 @@ namespace BuyZone.Infrastructure.Migrations
                             PasswordHash = "hashed_password_here",
                             PhoneNumber = "0987654321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ca118393-bbe9-4f74-a5b8-56f2728d85b6",
+                            SecurityStamp = "4ee0cb4b-ea4b-4dc6-b3f3-3b6fe83ba61d",
                             TwoFactorEnabled = false,
                             UserName = "dana@customer.com",
                             Address = "456 Elm St",
@@ -574,7 +1106,7 @@ namespace BuyZone.Infrastructure.Migrations
                         {
                             Id = new Guid("e3333333-0000-4000-8000-000000000001"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6fe2fa4a-c630-4b4a-b3fd-d53f40b0f9da",
+                            ConcurrencyStamp = "5cdf3dcf-5e77-4cc7-8116-45012b4c556a",
                             Email = "alice@company.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -583,7 +1115,7 @@ namespace BuyZone.Infrastructure.Migrations
                             PasswordHash = "",
                             PhoneNumber = "999888777",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "998dc1ba-ae75-4e5b-ba9e-43d369006f7c",
+                            SecurityStamp = "d61ba78c-d094-4893-8562-f1eab383daf7",
                             TwoFactorEnabled = false,
                             UserName = "alice@company.com",
                             FirstName = "Alice",
@@ -594,7 +1126,7 @@ namespace BuyZone.Infrastructure.Migrations
                         {
                             Id = new Guid("e3333133-0000-4000-8000-000000000001"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e4a1aefd-90a7-4b76-a96d-43df06e2370c",
+                            ConcurrencyStamp = "11ab417a-b373-45b1-8def-022a89cb6888",
                             Email = "bob@company.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -603,7 +1135,7 @@ namespace BuyZone.Infrastructure.Migrations
                             PasswordHash = "",
                             PhoneNumber = "888777666",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f231ddeb-6eff-45ea-aa07-17ed255d9dd8",
+                            SecurityStamp = "2607be9d-6b70-4c21-aeef-3b121ca0698c",
                             TwoFactorEnabled = false,
                             UserName = "bob@company.com",
                             FirstName = "Bob",
