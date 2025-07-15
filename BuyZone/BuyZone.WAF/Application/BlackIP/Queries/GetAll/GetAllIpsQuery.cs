@@ -29,7 +29,7 @@ public class GetAllIpsQuery
             {
                 Id = e.Id,
                 Number = e.Number,
-                IpAddress = e.IpAddress,
+                IpAddress = (e.IpAddress=="::1"?"localhost":e.IpAddress),
                 NumberOfRequests = e.NumberOfRequests,
                 Status = e.Status,
                 FirstSeen = e.FirstSeen.ToString("yyyy-MM-dd HH:mm:ss"),
